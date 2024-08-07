@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="static/sim.css">
+    <meta charset="UTF-8">
+    <title>cool graphs</title>
+</head>
+<body>
+
+<div class="example">BRUH.</div>
+
+<h1 style="text-align:center">HI MADI</h1>
+
+<div class="plot">{{ graph|safe }}</div>
+
+<div class="input">
+    <form autocomplete="off" action method="post">
+        <label for="betSize">Bet Size $</label>
+        <input type="number" id="betSize" name="betSize" placeholder=5>
+        <input type="submit" value="Submit">
+    </form>
+</div>
+
+<div class="plot">{{ graph2|safe }}</div>
+
+
+</body>
+</html>

@@ -4,6 +4,7 @@ import pandas as pd
 import plotly.express as px
 import random
 
+
 def blackjack_sim():
     if request.method == 'POST':
         try:
@@ -33,13 +34,17 @@ def blackjack_sim():
     dfi = pd.DataFrame(cashflow_list)
     dfi = dfi.transpose().reset_index()
 
+    print(len(cashflow_list[0])-1)
+    tickmark_list = create_tickmarks(len(cashflow_list[0])-1)
+    print(tickmark_list)
+
     y = [int(x) for x in np.arange(0, n)]
     fig = px.line(
         dfi,
         x='index',
         y=y,
-        height=1000,
-        width=1000
+        height=1100,
+        width=1100  # 983 makes my phone have scrollbar
     )
     fig = fig.update_traces(
         line_color='#ff0000',
@@ -48,18 +53,60 @@ def blackjack_sim():
     fig = fig.update_layout(
         xaxis_fixedrange=True,
         yaxis_fixedrange=True,
+        yaxis_scaleanchor='x',
         xaxis_griddash='dash',
         yaxis_griddash='dash',
-        margin=dict(l=0, r=0, t=30, b=0),
+        margin=dict(l=0, r=0, t=100, b=0),
+        xaxis_tickfont_size=50,
+        yaxis_tickfont_size=50,
+        xaxis_range=[0, tickmark_list[-1]+1],
+        xaxis_type='category',
+        yaxis_rangemode='tozero',
+        xaxis_title='Hands',
+        xaxis_title_font_size=50,
+        yaxis_title=None,
+        xaxis_zeroline=True,
+        yaxis_zeroline=False,
+        yaxis_tickprefix='$ ',
+        yaxis_ticksuffix=' ',
+        xaxis_tickvals=tickmark_list,
         plot_bgcolor='rgb(0, 0, 0, 0)',
         paper_bgcolor='rgb(0, 0, 0, 0)',
         showlegend=False,
-        title=f'${bet}',
+        title=f'Blackjack - ${bet} Bets',
+        title_x=.5,
+        title_font_size=50,
         font_color='white',
         font_family='Arial Black'
     )
-    fig_html = fig.to_html(full_html=False, config={'displayModeBar':False})
+    fig_html = fig.to_html(full_html=False, config={'displayModeBar': False})
     return fig_html
+
+
+def create_tickmarks(n):
+    # max of 7 xaxis tick marks, not including 0
+
+    if n <= 6:
+        counter = 1
+    elif n <= 12:
+        counter = 2
+    elif n <= 30:
+        counter = 5
+    elif n <= 60:
+        counter = 10
+    elif n <= 90:
+        counter = 15
+    else:
+        counter = 20
+
+    ticks = list(np.arange(counter, n, counter))
+    if n % counter == 0:
+        ticks.append(n)
+    if n % counter != 0:
+        ticks.append(((n//counter)+1)*counter)
+
+    return ticks
+
 
 def make_different_plot():
     n = 100
@@ -103,5 +150,5 @@ def make_different_plot():
         font_color='white',
         font_family='Arial Black'
     )
-    fig_html = fig.to_html(full_html=False, config={'displayModeBar':False})
+    fig_html = fig.to_html(full_html=False, config={'displayModeBar': False})
     return fig_html

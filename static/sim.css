@@ -6,6 +6,18 @@
 
 body {
   background-color: var(--pageBackground);
+  width: 50%;
+  margin: auto;
+  box-sizing: border-box;
+}
+
+@media only screen and (max-device-width: 500px) {
+  body {
+    width: 100%;
+  }
+  div.example {
+    display: none;
+  }
 }
 
 div.example {
@@ -13,15 +25,36 @@ div.example {
   padding: 20px;
 }
 
-@media screen and (max-device-width: 500px) {
-  div.example {
-    display: none;
-  }
+
+
+.menu{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-content: center;
+  width: 100%;
+  gap: 20px;
 }
 
+.menu-option{
+  box-sizing: border-box;
+  width: 100%;
+  color: white;
+  text-align: center;
+  border: solid white;
+  border-radius: 19px;
+  font-size: 9em;
+}
+
+
+
+
+
+
+
 div.plot {
-    margin-top: 20px;
-    margin-bottom: 20px;
+    box-sizing: border-box;
+    max-width: 100%;
+    margin: 20px auto;
 }
 
 .input {

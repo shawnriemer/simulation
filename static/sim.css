@@ -15,16 +15,16 @@ body {
 
 @media only screen and (min-device-width: 500px) {
   body {
-    width: 100%;
+    width: 80%;
   }
   div.example {
     display: none;
   }
   .menu {
-    width:80%
+    width:100%
   }
   .plot{
-    width:80%
+    width:100%
   }
 }
 
@@ -57,14 +57,29 @@ div.example {
   border-color: teal;
 }
 
+.strategy-menu-option{
+  box-sizing: border-box;
+  width: 100%;
+  color: white;
+  text-align: center;
+  border: solid white;
+  border-radius: 19px;
+  font-size: 4em;
+  text-decoration: none;
+}.menu-option:hover{
+  color: teal;
+  font-weight: bold;
+  border-color: teal;
+}
 
-
-
+.sim-header{
+  font-size: 4em;
+}
 
 
 div.plot {
     box-sizing: border-box;
     max-width: 100%;
-    max-height: 30%;
+/*    max-height: 30%;*/
     margin: 20px auto;
 }

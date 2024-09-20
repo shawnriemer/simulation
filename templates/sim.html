@@ -7,21 +7,36 @@
 </head>
 <body>
 
-<h1 style="color: white;">All sorts of betting strategies exist, but do any of them actually work? (Hint: no) Try your luck by simulating various strategies below.</h1>
+<div class="menu">
+    <a class="strategy-menu-option" href="#none">No Strategy</a>
+    <a class="strategy-menu-option" href="#martingale">Martingale</a>
+    <a class="strategy-menu-option" href="#grandmartingale">Grand Martingale</a>
+</div>
 
-<h1>None</h1>
+<p>All sorts of betting strategies exist, but do any of them actually work? (Hint: no) Try your luck by simulating various strategies below.</p>
+
+<h1 class="sim-header" id="none">None</h1>
 <h2>The "No Strategy" strategy where you roll up to a table and play until you inevitably run out of money. Most people fall in this category.</h2>
+<form action="/sim", method="POST">
+    <label for="n">Runs:</label>
+    <input type="text" id='n' name="none_n">
+    <label for="bet">Bet Size:</label>
+    <input type="text" id='bet' name="none_bet">
+    <label for="start">Start:</label>
+    <input type="text" id='start' name="none_start">
+    <button type="submit">Re-run simulations</button>
+</form>
 <div class="plot">{{ graph_none|safe }}</div>
 
-<h1>Martingale</h1>
+<h1 class="sim-header" id="martingale">Martingale</h1>
 <h2>Double your bet after every loss to instantly recoup all your losses. I thought I was a genius in elementary school for coming up with this idea. Surprisingly it turns out I am not a genius, as this strategy just assures you lose your money all at once instead of gradually.</h2>
 <div class="plot">{{ graph_martingale|safe }}</div>
 
-<h1>Grand Martingale</h1>
+<h1 class="sim-header" id="grandmartingale">Grand Martingale</h1>
 <h2>In addition to doubling your bet after losses, add the number of units equal to how many consecutive losses you've had. This way you stay on the same path regardless of how many times you lose. It also makes prettier graphs than generic Martingale.</h2>
-<div class="plot">{{ graph|safe }}</div>
+<div class="plot">{{ graph_grandmartingale|safe }}</div>
 
-<h1>Labouchere</h1>
+<h1 class="sim-header" id="labouchere">Labouchere</h1>
 <h2>Choose a final profit and break it up into smaller steps.</h2>
 <div class="plot">{{ graph|safe }}</div>
 
